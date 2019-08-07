@@ -17,7 +17,8 @@ logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 Load schema and Database Data
 ./gradlew u
-Technical Debt: The MqttKeepAliveSignalIntegrationTest integration test is marked as ignored to run by the make test command, but you can run it directly in your IDE.
+
+Technical Debt: 
 
 You can be the topic on the application.yml file
 Architecture decision record (ADR)
