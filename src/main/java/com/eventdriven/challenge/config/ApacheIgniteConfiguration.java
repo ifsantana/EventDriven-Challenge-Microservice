@@ -5,22 +5,20 @@ import org.apache.ignite.IgniteException;
 import org.apache.ignite.Ignition;
 import org.apache.ignite.cache.CacheAtomicityMode;
 import org.apache.ignite.configuration.*;
-import org.apache.ignite.springdata.repository.config.EnableIgniteRepositories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import javax.cache.expiry.CreatedExpiryPolicy;
 import javax.cache.expiry.Duration;
 import java.util.concurrent.TimeUnit;
 
-@Configuration
-@EnableIgniteRepositories(basePackages="com.eventdriven.challenge.repositories")
+//@Configuration
+//@EnableIgniteRepositories(basePackages="com.eventdriven.challenge.repositories")
 public class ApacheIgniteConfiguration {
     private static final String INSTANCE_NAME = "challenge-cache";
     private static final int PORT = 47100;
 
-    @Bean
-    public IgniteConfiguration igniteCfg() {//getConfiguration
+//    @Bean
+    public IgniteConfiguration igniteCfg() {
         IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
         igniteConfiguration.setClientMode(false);
         igniteConfiguration.setMetricsLogFrequency(0);
@@ -62,8 +60,8 @@ public class ApacheIgniteConfiguration {
         igniteConfiguration.setDataStorageConfiguration(storageCfg);
     }
 
-    @Bean(destroyMethod = "close")
+//    @Bean(destroyMethod = "close")
     public Ignite igniteInstance(IgniteConfiguration igniteConfiguration) throws IgniteException {
-        return Ignition.start(igniteConfiguration);
+        return Ignition.start("apacheignite-cassandra.xml");
     }
 }
