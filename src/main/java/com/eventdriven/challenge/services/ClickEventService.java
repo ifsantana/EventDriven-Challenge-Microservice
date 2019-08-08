@@ -11,14 +11,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClickEventService {
-    private static final String TOPIC = "";
+    private static final String TOPIC = "save_click_topic";
     private ClickEventRepository repository;
-//    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
     private ClickConsumer consumer;
 
     @Autowired
-    public ClickEventService(ClickEventRepository repository, ClickConsumer consumer) {
+    public ClickEventService(ClickEventRepository repository, KafkaTemplate<String, Object> kafkaTemplate, ClickConsumer consumer) {
         this.repository = repository;
+        this.kafkaTemplate = kafkaTemplate;
         this.consumer = consumer;
     }
 

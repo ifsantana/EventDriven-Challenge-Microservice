@@ -26,7 +26,7 @@ public class KafkaConfiguration {
     //==========
 
     @Bean
-    public ProducerFactory<String, ClickEvent> producerFactory() {
+    public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -37,7 +37,7 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, ClickEvent> kafkaTemplate() {
+    public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 

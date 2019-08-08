@@ -6,7 +6,6 @@ import com.eventdriven.challenge.domain.ViewEvent;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteException;
 import org.apache.ignite.Ignition;
-import org.apache.ignite.cache.CacheAtomicityMode;
 import org.apache.ignite.cache.store.cassandra.datasource.DataSource;
 import org.apache.ignite.configuration.*;
 import org.apache.ignite.springdata20.repository.config.EnableIgniteRepositories;
@@ -14,8 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Properties;
 
 @Configuration
 @EnableIgniteRepositories(basePackages="com.eventdriven.challenge.repositories.cache")
@@ -56,10 +53,7 @@ public class ApacheIgniteConfiguration {
     @Bean(destroyMethod = "close")
     public Ignite igniteInstance(IgniteConfiguration igniteConfiguration) throws IgniteException {
         logger.info("Ignite Starting ...");
-//        Ignite ignite  = Ignition.start("apacheignite-cassandra.xml");
-//        ignite.cache("ClickEventCache").loadCache(null);
-//		ignite.cache("ViewEventCache").loadCache(null);
-//        return ignite;
+
         return Ignition.start(igniteConfiguration);
     }
 }

@@ -7,4 +7,8 @@ import java.io.Serializable;
 public @Data class ClickEvent implements Serializable {
 
     @QuerySqlField(index = true) private Long id;
+
+    public ClickEvent(Long id) {
+        this.id = id;
+    }
 }
