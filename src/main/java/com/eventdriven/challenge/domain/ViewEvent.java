@@ -6,6 +6,5 @@ import java.io.Serializable;
 
 public @Data class ViewEvent implements Serializable {
 
-    @QuerySqlField(index = true)
-    private Long id;
+    @QuerySqlField(index = true) private Long id;
 }
