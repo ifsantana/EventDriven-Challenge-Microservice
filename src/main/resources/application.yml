@@ -14,3 +14,8 @@ spring:
       password:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+ignite:
+    instanceName: challenge-cache
+    cassandraContactPoint: 127.0.0.1
+    ipFinderRange: 127.0.0.1:47500..47509

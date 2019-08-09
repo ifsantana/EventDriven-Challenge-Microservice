@@ -6,13 +6,10 @@ import com.eventdriven.challenge.repositories.cache.ViewEventRepository;
 import com.eventdriven.challenge.services.component.ViewEventCacheWatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.cache.query.ContinuousQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 @Service
 public class ViewEventService {
     private static final String TOPIC = "save_view_topic";
@@ -36,6 +33,6 @@ public class ViewEventService {
     }
 
     public void registerViewEvent(ViewEvent event) {
-        watcher.registerViewEventContinuosQuery();
+        watcher.registerViewEventContinuousQuery();
     }
 }

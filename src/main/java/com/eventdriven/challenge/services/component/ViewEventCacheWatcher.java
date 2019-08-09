@@ -23,9 +23,8 @@ public class ViewEventCacheWatcher {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-
     @PostConstruct
-    public void registerViewEventContinuosQuery() {
+    public void registerViewEventContinuousQuery() {
 
         ContinuousQuery query = new ContinuousQuery();
 
@@ -33,11 +32,10 @@ public class ViewEventCacheWatcher {
                 new CacheEntryUpdatedListener<Integer, ViewEvent>() {
                     @Override
                     public void onUpdated(Iterable<CacheEntryEvent<? extends Integer, ? extends ViewEvent>> cacheEntryEvents) throws CacheEntryListenerException {
-                        cacheEntryEvents.forEach(cacheEntryEvent -> {
-                            kafkaTemplate.send(TOPIC, cacheEntryEvent.toString());
-                        });
+                        cacheEntryEvents.forEach(cacheEntryEvent -> kafkaTemplate.send(TOPIC, cacheEntryEvent.toString()));
                     }
-                });
+                }
+        );
 
         IgniteCache<String, ViewEvent> igniteCache = ignite.getOrCreateCache("ViewEventCache");
         igniteCache.query(query);
