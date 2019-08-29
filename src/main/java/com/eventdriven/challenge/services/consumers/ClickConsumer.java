@@ -1,6 +1,6 @@
 package com.eventdriven.challenge.services.consumers;
 
-import com.eventdriven.challenge.domain.ClickEvent;
+import com.eventdriven.challenge.domain.entities.Event;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class ClickConsumer {
 
     @KafkaListener(topics = "Kafka_Example_json", groupId = "group_json",
             containerFactory = "userKafkaListenerFactory")
-    public void consumeJson(ClickEvent click) {
+    public void consumeJson(Event click) {
         System.out.println("Consumed JSON Message: " + click);
     }
 }

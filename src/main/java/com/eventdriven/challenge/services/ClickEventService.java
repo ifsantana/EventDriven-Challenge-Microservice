@@ -1,10 +1,7 @@
 package com.eventdriven.challenge.services;
 
-import com.eventdriven.challenge.repositories.cache.ClickEventRepository;
+import com.eventdriven.challenge.repositories.cache.EventRepository;
 import com.eventdriven.challenge.services.consumers.ClickConsumer;
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteDataStreamer;
-import org.apache.ignite.stream.kafka.KafkaStreamer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -12,12 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClickEventService {
     private static final String TOPIC = "save_click_topic";
-    private ClickEventRepository repository;
+    private EventRepository repository;
     private KafkaTemplate<String, Object> kafkaTemplate;
     private ClickConsumer consumer;
 
     @Autowired
-    public ClickEventService(ClickEventRepository repository, KafkaTemplate<String, Object> kafkaTemplate, ClickConsumer consumer) {
+    public ClickEventService(EventRepository repository, KafkaTemplate<String, Object> kafkaTemplate, ClickConsumer consumer) {
         this.repository = repository;
         this.kafkaTemplate = kafkaTemplate;
         this.consumer = consumer;

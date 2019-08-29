@@ -1,6 +1,6 @@
 package com.eventdriven.challenge.services.component;
 
-import com.eventdriven.challenge.domain.ViewEvent;
+import com.eventdriven.challenge.domain.entities.Event;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.cache.query.ContinuousQuery;
@@ -29,15 +29,15 @@ public class ViewEventCacheWatcher {
         ContinuousQuery query = new ContinuousQuery();
 
         query.setLocalListener(
-                new CacheEntryUpdatedListener<Integer, ViewEvent>() {
+                new CacheEntryUpdatedListener<Integer, Event>() {
                     @Override
-                    public void onUpdated(Iterable<CacheEntryEvent<? extends Integer, ? extends ViewEvent>> cacheEntryEvents) throws CacheEntryListenerException {
+                    public void onUpdated(Iterable<CacheEntryEvent<? extends Integer, ? extends Event>> cacheEntryEvents) throws CacheEntryListenerException {
                         cacheEntryEvents.forEach(cacheEntryEvent -> kafkaTemplate.send(TOPIC, cacheEntryEvent.toString()));
                     }
                 }
         );
 
-        IgniteCache<String, ViewEvent> igniteCache = ignite.getOrCreateCache("ViewEventCache");
+        IgniteCache<String, Event> igniteCache = ignite.getOrCreateCache("EventCache");
         igniteCache.query(query);
 
     }

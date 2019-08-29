@@ -1,8 +1,7 @@
 package com.eventdriven.challenge.config;
 
 import com.datastax.driver.core.policies.RoundRobinPolicy;
-import com.eventdriven.challenge.domain.ClickEvent;
-import com.eventdriven.challenge.domain.ViewEvent;
+import com.eventdriven.challenge.domain.entities.Event;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteException;
 import org.apache.ignite.Ignition;
@@ -17,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -63,18 +59,15 @@ public class ApacheIgniteConfiguration {
 
         // Defining and creating a new cache to be used by Ignite Spring Data
         // repository.
-        CacheConfiguration clickCache = new CacheConfiguration("ClickEventCache");
-        CacheConfiguration viewCache = new CacheConfiguration("ViewEventCache");
+        CacheConfiguration eventCache = new CacheConfiguration("EventCache");
 
         // Setting SQL schema for the cache.
-        clickCache.setIndexedTypes(Long.class, ClickEvent.class);
-        viewCache.setIndexedTypes(Long.class, ViewEvent.class);
+        eventCache.setIndexedTypes(Long.class, Event.class);
 
         // Setting AtomicityMode
-        clickCache.setAtomicityMode(CacheAtomicityMode.ATOMIC);
-        viewCache.setAtomicityMode(CacheAtomicityMode.ATOMIC);
+        eventCache.setAtomicityMode(CacheAtomicityMode.ATOMIC);
 
-        cfg.setCacheConfiguration(clickCache, viewCache);
+        cfg.setCacheConfiguration(eventCache);
         cfg.setDiscoverySpi(spi);
 
         return cfg;

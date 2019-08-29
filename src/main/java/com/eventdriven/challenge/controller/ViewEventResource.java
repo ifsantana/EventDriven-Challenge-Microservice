@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -26,6 +25,6 @@ public class ViewEventResource {
     @RequestMapping(value = BASE_PATH + "/view", method = GET)
     public ResponseEntity<?> getAll() {
         this.service.test();
-        return new ResponseEntity<>("message has been send!", HttpStatus.OK);
+        return new ResponseEntity<>("message has been sent!", HttpStatus.OK);
     }
 }
