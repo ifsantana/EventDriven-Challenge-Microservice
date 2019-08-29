@@ -1,9 +1,7 @@
 # EventDriven-Challenge-Microservice
 
 Run Application
-Install Postgres, Apache Ignite and Eclipse Mosquitto in Docker using the docker-compose up -d command inside the docker folder
-Return to the root directory and run the make run command
-Specify a profile: SPRING_PROFILES_ACTIVE=staging ./gradlew bootRun
+...
 
 Run Unit tests and Integration tests
 make test
