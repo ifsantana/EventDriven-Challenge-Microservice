@@ -1,4 +1,4 @@
-package com.eventdriven.challenge.services.consumers;
+package com.eventdriven.challenge.services.queries;
 
 import com.eventdriven.challenge.domain.entities.Event;
 import org.springframework.kafka.annotation.KafkaListener;

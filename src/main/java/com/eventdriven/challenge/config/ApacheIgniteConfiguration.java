@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@EnableIgniteRepositories(basePackages="com.eventdriven.challenge.repositories.cache")
+@EnableIgniteRepositories(basePackages="com.eventdriven.challenge.repositories.queries")
 public class ApacheIgniteConfiguration {
 
     private static Logger logger = LoggerFactory.getLogger(ApacheIgniteConfiguration.class.getName());

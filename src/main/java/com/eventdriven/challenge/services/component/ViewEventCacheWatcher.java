@@ -7,7 +7,6 @@ import org.apache.ignite.cache.query.ContinuousQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.cache.event.CacheEntryEvent;
 import javax.cache.event.CacheEntryListenerException;
@@ -29,16 +28,15 @@ public class ViewEventCacheWatcher {
         ContinuousQuery query = new ContinuousQuery();
 
         query.setLocalListener(
-                new CacheEntryUpdatedListener<Integer, Event>() {
+                new CacheEntryUpdatedListener<Long, Event>() {
                     @Override
-                    public void onUpdated(Iterable<CacheEntryEvent<? extends Integer, ? extends Event>> cacheEntryEvents) throws CacheEntryListenerException {
+                    public void onUpdated(Iterable<CacheEntryEvent<? extends Long, ? extends Event>> cacheEntryEvents) throws CacheEntryListenerException {
                         cacheEntryEvents.forEach(cacheEntryEvent -> kafkaTemplate.send(TOPIC, cacheEntryEvent.toString()));
                     }
                 }
         );
 
-        IgniteCache<String, Event> igniteCache = ignite.getOrCreateCache("EventCache");
+        IgniteCache<Long, Event> igniteCache = ignite.getOrCreateCache("EventCache");
         igniteCache.query(query);
-
     }
 }
