@@ -3,7 +3,11 @@
 Run Application
 ...
 
-CREATE CASSANDRA TABLE
+## SWAGGER API`s
+
+localhost:8080/swagger-ui.html
+
+## CREATE CASSANDRA TABLE
 
 CREATE TABLE event (id bigint primary key, event_type text, user_email text, payload text, event_date timestamp); 
 
