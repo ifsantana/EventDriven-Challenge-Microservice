@@ -22,37 +22,11 @@ public class ClickEventService {
     }
 
     public Iterable<Event> getAll() {
-        Iterable<Event> teste = this.repository.findAll();
-        return teste;
+
+        return this.repository.findAll();
     }
 
     public void verifyClickLimit() {
-//        KafkaStreamer<String, String> kafkaStreamer = new KafkaStreamer<>();
-//
-//        try (IgniteDataStreamer<String, String> stmr = ignite.dataStreamer(null)) {
-//            // allow overwriting cache data
-//            stmr.allowOverwrite(true);
-//
-//            kafkaStreamer.setIgnite(ignite);
-//            kafkaStreamer.setStreamer(stmr);
-//
-//             set the topic
-//            kafkaStreamer.setTopic();
-//
-//             set the number of threads to process Kafka streams
-//            kafkaStreamer.setThreads(4);
-//
-//             set Kafka consumer configurations
-//            kafkaStreamer.setStreamer();
-//
-//             set decoders
-//            kafkaStreamer.setKeyDecoder(strDecoder);
-//            kafkaStreamer.setValueDecoder(strDecoder);
-//
-//            kafkaStreamer.start();
-//        }
-//        finally {
-//            kafkaStreamer.stop();
-//        }
+
     }
 }
